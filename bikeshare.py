@@ -22,7 +22,7 @@ def get_filters():
     city=input("would you like to see data for Chicago, New York City or Washington?:\n").lower()
     while city not in cities:
         city=input("Please enter correct city name (Chicago, New York City or Washington):\n").lower()
-    print("You have chosen=",city)
+    print("You have chosen={}".format(city))
 
     #List of first 6 months of 2017 (january, february, ... , june,all) to check against user input
     months=['january', 'february', 'march', 'april', 'may', 'june','all']
@@ -30,7 +30,7 @@ def get_filters():
     month=input("Enter a month name (January - June) to filter the data by spacific month or enter 'all':\n").lower()
     while month not in months:
         month=input("Please enter correct month name (January - June) or enter 'all':\n").lower()
-    print("You have chosen=",month)
+    print("You have chosen={}".format(month))
 
     #List of days (saturday, sunday, ... friday,all) to check against user input
     days=['saturday', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday','all']
@@ -38,7 +38,7 @@ def get_filters():
     day=input("Enter day name to filter by day or enter 'all':\n").lower()
     while day not in days:
         day=input("Please enter correct day name or enter 'all':\n").lower()
-    print("You have chosen=",day)
+    print("You have chosen={}".format(day))
 
 
     print('-'*40)
@@ -92,13 +92,13 @@ def time_stats(df):
 
     # Calculate the most common month
     common_month=df['month'].mode()[0]
-    print("The most common month is=",common_month)
+    print("The most common month is={}".format(common_month))
     # Calculate the most common day of week
     common_dow=df['day_of_week'].mode()[0]
-    print("The most common day of week is=",common_dow)
+    print("The most common day of week is={}".format(common_dow))
      # Calculate the most common start hour
     common_st_hr=df['hour'].mode()[0]
-    print("The most common start hour is=",common_st_hr)
+    print("The most common start hour is={}".format(common_st_hr))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -112,13 +112,13 @@ def station_stats(df):
 
     # Display most commonly used start station
     common_st_station=df['Start Station'].mode()[0]
-    print("The most common start station is=",common_st_station)
+    print("The most common start station is={}".format(common_st_station))
     # Display most commonly used end station
     common_end_station=df['End Station'].mode()[0]
-    print("The most common end station is=",common_end_station)
+    print("The most common end station is={}".format(common_end_station))
     # Display most frequent combination of start station and end station trip
     common_combination=df['ST End Stations'].mode()[0]
-    print("The most frequant combination of trips is=",common_combination)
+    print("The most frequant combination of trips is={}".format(common_combination))
 
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -133,15 +133,18 @@ def trip_duration_stats(df):
 
     # Calculate total travel time in seconds
     total_travel_time=df['Trip Duration'].sum()
-    print("Total travel time in seconds is=",total_travel_time,"seconds")
+    print("Total travel time in seconds is= {} seconds".format(total_travel_time))
     # Calculate total travel time in minutes
     ttt_in_minutes=total_travel_time/60
-    print("Total travel time in minutes is=",format(ttt_in_minutes, ".2f"),"minutes")
+    ttt_in_minutes=format(ttt_in_minutes, ".2f")
+    print("Total travel time in minutes is= {} minutes".format(ttt_in_minutes))
     # Calculate mean travel time in seconds
     mean_travel_time=df['Trip Duration'].mean()
-    print("Mean travel time in seconds is=",format(mean_travel_time, ".2f"),"seconds")
+    mean_travel_time=format(mean_travel_time, ".2f")
+    print("Mean travel time in seconds is= {} seconds".format(mean_travel_time))
     # Calculate mean travel time in minutes
-    mean_travel_time_min= mean_travel_time/60
+    mean_travel_time=float(mean_travel_time)
+    mean_travel_time_min=mean_travel_time/60
     print("Mean Travel time in minutes is=",format(mean_travel_time_min, ".2f"),"minutes")
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -185,12 +188,12 @@ def user_stats(df):
 def display_raw_data(df):
     answer=""
     i=0
-    while answer != "yes" or answer != "no":
+    while answer != "yes" or answer != "no" or answer != "n" or answer !="y":
         answer=input("Do you want to see 5 rows of raw data?(yes or no):\n").lower()
-        if answer=="yes":
+        if answer=="yes" or answer=="y":
             print(df.iloc[i:i+5])
             i+=5
-        elif answer=="no":
+        elif answer=="no" or answer =="n":
             print("End of program, thank you.")
             break
         else:
