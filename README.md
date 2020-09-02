@@ -15,7 +15,10 @@ The project descriptive statistics includes information about the following:
 The project also displays raw data upon user's request.
 
 ### Files used
-Include the files used
+The project used the following files:
+- chicago.csv
+- new_york_city.csv
+- washington.csv
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
