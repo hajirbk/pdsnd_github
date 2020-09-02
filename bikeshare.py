@@ -188,12 +188,12 @@ def user_stats(df):
 def display_raw_data(df):
     answer=""
     i=0
-    while answer != "yes" or answer != "no":
+    while answer != "yes" or answer != "no" or answer != "n" or answer !="y":
         answer=input("Do you want to see 5 rows of raw data?(yes or no):\n").lower()
-        if answer=="yes":
+        if answer=="yes" or answer=="y":
             print(df.iloc[i:i+5])
             i+=5
-        elif answer=="no":
+        elif answer=="no" or answer =="n":
             print("End of program, thank you.")
             break
         else:
